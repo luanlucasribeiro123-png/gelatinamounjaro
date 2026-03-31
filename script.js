@@ -147,6 +147,11 @@ function nextScreen(screenId, isBack = false) {
         fbq('track', 'PageView');
     }
 
+    // UTMify: Forçar nova varredura de links em SPAs
+    if (window.utmify && typeof window.utmify.scan === 'function') {
+        window.utmify.scan();
+    }
+
     if (screenId === 'screen-vsl') {
         startVslProgress();
         loadVturb1();
@@ -163,6 +168,13 @@ function nextScreen(screenId, isBack = false) {
     }
     if (screenId === 'screen-sales-page') {
         startSalesTimer();
+        // Garante scan extra na pagina de vendas
+        setTimeout(() => {
+            if (window.utmify && typeof window.utmify.scan === 'function') {
+                window.utmify.scan();
+            }
+        }, 500);
+    }
     }
     
     // Rastreamento de Eventos (Meta Pixel SPA)
