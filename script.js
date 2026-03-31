@@ -175,7 +175,6 @@ function nextScreen(screenId, isBack = false) {
             }
         }, 500);
     }
-    }
     
     // Rastreamento de Eventos (Meta Pixel SPA)
     if (typeof fbq === 'function') {
