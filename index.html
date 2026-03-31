@@ -1657,10 +1657,10 @@
                         <p style="color: #64748b; font-size: 0.95rem; margin: 5px 0 0 0;">Ou 4x de R$ 5,77</p>
                     </div>
 
-                    <!-- Botao de Compra -->
-                    <button class="btn-green pulse-anim" onclick="irParaCheckout()" style="font-size: 1.25rem; font-weight: 900; width: 100%; padding: 18px; box-shadow: 0 8px 25px rgba(34,197,94,0.4);">
+                    <!-- Botão de Compra (Link Real para UTMify) -->
+                    <a href="https://pay.cakto.com.br/kktndmh_823063" class="btn-green pulse-anim" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" style="text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 900; width: 100%; padding: 25px; box-shadow: 0 8px 25px rgba(34,197,94,0.4); border-radius: 12px; height: 75px;">
                         QUERO COMEÇAR 🥰
-                    </button>
+                    </a>
                     <p style="color: #94a3b8; font-size: 0.8rem; margin: 15px 0 0 0;">🔒 Compra 100% segura • Garantia de 30 dias</p>
                 </div>
 
@@ -1676,9 +1676,9 @@
                     </p>
                 </div>
 
-                <button class="btn-green pulse-anim" onclick="irParaCheckout()" style="font-size: 1.25rem; font-weight: 900; width: 100%; padding: 18px; margin-bottom: 40px; box-shadow: 0 8px 25px rgba(34,197,94,0.4);">
+                <a href="https://pay.cakto.com.br/kktndmh_823063" class="btn-green pulse-anim" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" style="text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 900; width: 100%; padding: 25px; margin-bottom: 40px; box-shadow: 0 8px 25px rgba(34,197,94,0.4); border-radius: 12px; height: 75px;">
                     QUERO COMEÇAR 🥰
-                </button>
+                </a>
 
                 <!-- FAQ -->
                 <h3 style="font-size: 1.4rem; font-weight: 900; color: #0f172a; margin-bottom: 20px;">❓ Perguntas Frequentes</h3>
@@ -1716,9 +1716,9 @@
 
                 <div style="height: 20px;"></div>
 
-                <button class="btn-green pulse-anim" onclick="irParaCheckout()" style="font-size: 1.25rem; font-weight: 900; width: 100%; padding: 18px; box-shadow: 0 8px 25px rgba(34,197,94,0.4);">
+                <a href="https://pay.cakto.com.br/kktndmh_823063" class="btn-green pulse-anim" onclick="if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');" style="text-decoration: none; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 900; width: 100%; padding: 25px; box-shadow: 0 8px 25px rgba(34,197,94,0.4); border-radius: 12px; height: 75px;">
                     QUERO COMEÇAR 🥰
-                </button>
+                </a>
                 <p style="color: #94a3b8; font-size: 0.8rem; margin: 15px 0 0 0;">🔒 Compra 100% segura • Garantia de 30 dias</p>
                 <div style="height: 30px;"></div>
             </main>
@@ -1727,44 +1727,8 @@
     </div>
     <script src="script.js"></script>
 </body>  
-
-<script>
-let prefix = ["https://pay.cakto.com.br"];
-
-function getParams() {
-    let t = "",
-        e = window.top.location.href,
-        r = new URL(e);
-
-    if (null != r) {
-        let a = r.searchParams.get("utm_source"),
-            n = r.searchParams.get("utm_medium"),
-            o = r.searchParams.get("utm_campaign"),
-            m = r.searchParams.get("utm_term"),
-            c = r.searchParams.get("utm_content");
-
-        -1 !== e.indexOf("?") &&
-            (t = ⁠ &sck=${a}|${n}|${o}|${m}|${c} ⁠),
-            console.log(t);
-    }
-
-    return t;
-}
-
-!(function () {
-    var t = new URLSearchParams(window.location.search);
-
-    t.toString() &&
-        document.querySelectorAll("a").forEach(function (e) {
-            for (let r = 0; r < prefix.length; r++)
-                -1 !== e.href.indexOf(prefix[r]) &&
-                    (-1 === e.href.indexOf("?")
-                        ? (e.href += "?" + t.toString() + getParams())
-                        : (e.href += "&" + t.toString() + getParams()));
-        });
-})();
-</script>
-
-
+<!-- Utmify Script -->
+    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
+    <!-- End Utmify Script -->
 </html>
 
