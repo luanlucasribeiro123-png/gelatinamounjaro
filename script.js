@@ -176,14 +176,6 @@ function nextScreen(screenId, isBack = false) {
         }, 500);
     }
     
-    // Rastreamento de Eventos (Meta Pixel SPA)
-    if (typeof fbq === 'function') {
-        // Eventos Específicos
-        if (screenId === 'screen-vsl') fbq('track', 'Lead');
-        if (screenId === 'screen-vsl-2') fbq('track', 'ViewVSL2');
-        if (screenId === 'screen-sales-page') fbq('track', 'ViewContent');
-    }
-    
     // Retorna para o topo da tela
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
