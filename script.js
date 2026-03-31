@@ -142,6 +142,11 @@ function nextScreen(screenId, isBack = false) {
     if (screenId === 'screen-loading-final') {
         startFinalLoading();
     }
+    // Meta Pixel: Track PageView on screen change
+    if (typeof fbq === 'function') {
+        fbq('track', 'PageView');
+    }
+
     if (screenId === 'screen-vsl') {
         startVslProgress();
         loadVturb1();
@@ -162,8 +167,6 @@ function nextScreen(screenId, isBack = false) {
     
     // Rastreamento de Eventos (Meta Pixel SPA)
     if (typeof fbq === 'function') {
-        fbq('track', 'PageView');
-        
         // Eventos Específicos
         if (screenId === 'screen-vsl') fbq('track', 'Lead');
         if (screenId === 'screen-vsl-2') fbq('track', 'ViewVSL2');
@@ -428,6 +431,35 @@ function startVslProgress() {
             }
         }
     }, 600); 
+}
+
+function startVslProgress2() {
+    const fill = document.getElementById('vsl-progress-fill-2');
+    const pctLabel = document.getElementById('vsl-progress-pct-2');
+    const unlockText = document.getElementById('vsl-progress-text-2');
+    const hiddenBtn = document.getElementById('vsl-hidden-button-2');
+    let progress = 0;
+    
+    if (fill) fill.style.width = `0%`;
+    if (pctLabel) pctLabel.textContent = `0%`;
+    if (unlockText) unlockText.innerHTML = `🔒 Aguarde o final do vídeo...`;
+    if (hiddenBtn) hiddenBtn.style.display = 'none';
+    
+    const interval = setInterval(() => {
+        progress++;
+        if (fill) fill.style.width = `${progress}%`;
+        if (pctLabel) pctLabel.textContent = `${progress}%`;
+        
+        if (progress >= 100) {
+            clearInterval(interval);
+            if (pctLabel) pctLabel.textContent = `100%`;
+            if (unlockText) unlockText.innerHTML = `🔓 Oferta liberada!`;
+            if (hiddenBtn) {
+                hiddenBtn.style.display = 'block';
+                hiddenBtn.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }
+        }
+    }, 150); 
 }
 
 function startLoading2() {
