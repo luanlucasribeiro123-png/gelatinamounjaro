@@ -153,40 +153,15 @@ function nextScreen(screenId, isBack = false) {
     }
 
     if (screenId === 'screen-vsl') {
-        const videoId1 = '69c5ed6c6983e3eba6d383e5';
         loadVturb1();
-        
-        const checkPlayer1 = setInterval(() => {
-            if (window.smartplayer && window.smartplayer.instances && window.smartplayer.instances.length > 0) {
-                const player = window.smartplayer.instances.find(i => i.options.id === videoId1);
-                if (player) {
-                    // Espera 1 segundo após carregar e inicia a barrinha (Garante que o vídeo já está na tela)
-                    setTimeout(() => {
-                        startVslProgress();
-                    }, 1000);
-                    clearInterval(checkPlayer1);
-                }
-            }
-        }, 500);
+        startVslProgress();
     }
     if (screenId === 'screen-loading-vsl2') {
         startLoading2();
     }
     if (screenId === 'screen-vsl-2') {
-        const videoId2 = '69c5f7343a29b825b3ad51e0';
         loadVturb2();
-
-        const checkPlayer2 = setInterval(() => {
-            if (window.smartplayer && window.smartplayer.instances && window.smartplayer.instances.length > 0) {
-                const player = window.smartplayer.instances.find(i => i.options.id === videoId2);
-                if (player) {
-                    setTimeout(() => {
-                        startVslProgress2();
-                    }, 1000);
-                    clearInterval(checkPlayer2);
-                }
-            }
-        }, 500);
+        startVslProgress2();
     }
     if (screenId === 'screen-loading-vsl3') {
         startLoading3();
