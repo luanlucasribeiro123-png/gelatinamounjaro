@@ -156,14 +156,15 @@ function nextScreen(screenId, isBack = false) {
         const videoId1 = '69c5ed6c6983e3eba6d383e5';
         loadVturb1();
         
-        const checkPlay1 = setInterval(() => {
+        const checkPlayer1 = setInterval(() => {
             if (window.smartplayer && window.smartplayer.instances && window.smartplayer.instances.length > 0) {
                 const player = window.smartplayer.instances.find(i => i.options.id === videoId1);
                 if (player) {
-                    player.on('play', () => {
+                    // Espera 1 segundo após carregar e inicia a barrinha (Garante que o vídeo já está na tela)
+                    setTimeout(() => {
                         startVslProgress();
-                    });
-                    clearInterval(checkPlay1);
+                    }, 1000);
+                    clearInterval(checkPlayer1);
                 }
             }
         }, 500);
@@ -175,14 +176,14 @@ function nextScreen(screenId, isBack = false) {
         const videoId2 = '69c5f7343a29b825b3ad51e0';
         loadVturb2();
 
-        const checkPlay2 = setInterval(() => {
+        const checkPlayer2 = setInterval(() => {
             if (window.smartplayer && window.smartplayer.instances && window.smartplayer.instances.length > 0) {
                 const player = window.smartplayer.instances.find(i => i.options.id === videoId2);
                 if (player) {
-                    player.on('play', () => {
+                    setTimeout(() => {
                         startVslProgress2();
-                    });
-                    clearInterval(checkPlay2);
+                    }, 1000);
+                    clearInterval(checkPlayer2);
                 }
             }
         }, 500);
