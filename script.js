@@ -462,16 +462,19 @@ function startVslProgress() {
 }
 
 function startVslProgress2() {
-    const fill = document.getElementById('vsl-progress-fill-2');
-    const pctLabel = document.getElementById('vsl-progress-pct-2');
-    const unlockText = document.getElementById('vsl-progress-text-2');
-    const hiddenBtn = document.getElementById('vsl-hidden-button-2');
+    const fill = document.getElementById('vsl2-progress-fill');
+    const pctLabel = document.getElementById('vsl2-progress-pct');
+    const unlockText = document.getElementById('vsl2-progress-text');
+    const hiddenBtn = document.getElementById('vsl2-hidden-button');
     let progress = 0;
     
     if (fill) fill.style.width = `0%`;
     if (pctLabel) pctLabel.textContent = `0%`;
     if (unlockText) unlockText.innerHTML = `🔒 Aguarde o final do vídeo...`;
-    if (hiddenBtn) hiddenBtn.style.display = 'none';
+    if (hiddenBtn) {
+        hiddenBtn.style.display = 'none';
+        hiddenBtn.classList.remove('active'); // Remove classes de animação se houver
+    }
     
     const interval = setInterval(() => {
         progress++;
@@ -484,10 +487,10 @@ function startVslProgress2() {
             if (unlockText) unlockText.innerHTML = `🔓 Oferta liberada!`;
             if (hiddenBtn) {
                 hiddenBtn.style.display = 'block';
-                hiddenBtn.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                hiddenBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
-    }, 150); 
+    }, 250); // ~25 segundos total
 }
 
 function startLoading2() {
