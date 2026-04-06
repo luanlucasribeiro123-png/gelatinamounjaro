@@ -416,9 +416,11 @@ function startVslProgress() {
     if (fill) fill.style.width = `0%`;
     if (pctLabel) pctLabel.textContent = `0%`;
     if (unlockText) unlockText.innerHTML = `🔒 Assista para continuar...`;
-    if (hiddenBtn) hiddenBtn.style.display = 'none';
+    if (hiddenBtn) {
+        hiddenBtn.style.display = 'none';
+    }
     
-    // Carrega em ~15 segundos (150ms * 100)
+    // 69 segundos total (690ms * 100)
     const interval = setInterval(() => {
         progress++;
         if (fill) fill.style.width = `${progress}%`;
@@ -430,10 +432,10 @@ function startVslProgress() {
             if (unlockText) unlockText.innerHTML = `🔓 Plano liberado com sucesso!`;
             if (hiddenBtn) {
                 hiddenBtn.style.display = 'block';
-                hiddenBtn.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                hiddenBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
-    }, 600); 
+    }, 690); 
 }
 
 function startVslProgress2() {
@@ -448,9 +450,10 @@ function startVslProgress2() {
     if (unlockText) unlockText.innerHTML = `🔒 Aguarde o final do vídeo...`;
     if (hiddenBtn) {
         hiddenBtn.style.display = 'none';
-        hiddenBtn.classList.remove('active'); // Remove classes de animação se houver
+        hiddenBtn.classList.remove('active');
     }
     
+    // 86 segundos total (860ms * 100)
     const interval = setInterval(() => {
         progress++;
         if (fill) fill.style.width = `${progress}%`;
@@ -465,7 +468,7 @@ function startVslProgress2() {
                 hiddenBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
-    }, 250); // ~25 segundos total
+    }, 860); 
 }
 
 function startLoading2() {
