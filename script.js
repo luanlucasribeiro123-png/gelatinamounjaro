@@ -154,14 +154,14 @@ function nextScreen(screenId, isBack = false) {
 
     if (screenId === 'screen-vsl') {
         loadVturb1();
-        startVslProgress();
+        startVSLTimer(69, 'vsl-progress-fill', 'vsl-progress-pct', 'vsl-progress-text', 'vsl-hidden-button', 1);
     }
     if (screenId === 'screen-loading-vsl2') {
         startLoading2();
     }
     if (screenId === 'screen-vsl-2') {
         loadVturb2();
-        startVslProgress2();
+        startVSLTimer(92, 'vsl2-progress-fill', 'vsl2-progress-pct', 'vsl2-progress-text', 'vsl2-hidden-button', 2);
     }
     if (screenId === 'screen-loading-vsl3') {
         startLoading3();
@@ -406,69 +406,37 @@ function startFinalLoading() {
     }, 55); 
 }
 
-function startVslProgress() {
-    const fill = document.getElementById('vsl-progress-fill');
-    const pctLabel = document.getElementById('vsl-progress-pct');
-    const unlockText = document.getElementById('vsl-progress-text');
-    const hiddenBtn = document.getElementById('vsl-hidden-button');
-    let progress = 0;
+function startVSLTimer(seconds, fillId, pctId, textId, buttonId, type) {
+    const fill = document.getElementById(fillId);
+    const pctLabel = document.getElementById(pctId);
+    const unlockText = document.getElementById(textId);
+    const hiddenBtn = document.getElementById(buttonId);
+    
+    let currentSecond = 0;
+    const totalSeconds = seconds;
     
     if (fill) fill.style.width = `0%`;
     if (pctLabel) pctLabel.textContent = `0%`;
-    if (unlockText) unlockText.innerHTML = `🔒 Assista para continuar...`;
-    if (hiddenBtn) {
-        hiddenBtn.style.display = 'none';
-    }
-    
-    // 69 segundos total (690ms * 100)
-    const interval = setInterval(() => {
-        progress++;
-        if (fill) fill.style.width = `${progress}%`;
-        if (pctLabel) pctLabel.textContent = `${progress}%`;
-        
-        if (progress >= 100) {
-            clearInterval(interval);
-            if (pctLabel) pctLabel.textContent = `100%`;
-            if (unlockText) unlockText.innerHTML = `🔓 Plano liberado com sucesso!`;
-            if (hiddenBtn) {
-                hiddenBtn.style.display = 'block';
-                hiddenBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }
-    }, 690); 
-}
+    if (unlockText) unlockText.innerHTML = type === 1 ? `🔒 Assista para continuar...` : `🔒 Aguarde o final do vídeo...`;
+    if (hiddenBtn) hiddenBtn.style.display = 'none';
 
-function startVslProgress2() {
-    const fill = document.getElementById('vsl2-progress-fill');
-    const pctLabel = document.getElementById('vsl2-progress-pct');
-    const unlockText = document.getElementById('vsl2-progress-text');
-    const hiddenBtn = document.getElementById('vsl2-hidden-button');
-    let progress = 0;
-    
-    if (fill) fill.style.width = `0%`;
-    if (pctLabel) pctLabel.textContent = `0%`;
-    if (unlockText) unlockText.innerHTML = `🔒 Aguarde o final do vídeo...`;
-    if (hiddenBtn) {
-        hiddenBtn.style.display = 'none';
-        hiddenBtn.classList.remove('active');
-    }
-    
-    // 92 segundos total (920ms * 100)
-    const interval = setInterval(() => {
-        progress++;
+    const timer = setInterval(() => {
+        currentSecond++;
+        const progress = Math.min((currentSecond / totalSeconds) * 100, 100).toFixed(0);
+        
         if (fill) fill.style.width = `${progress}%`;
         if (pctLabel) pctLabel.textContent = `${progress}%`;
-        
-        if (progress >= 100) {
-            clearInterval(interval);
+
+        if (currentSecond >= totalSeconds) {
+            clearInterval(timer);
             if (pctLabel) pctLabel.textContent = `100%`;
-            if (unlockText) unlockText.innerHTML = `🔓 Oferta liberada!`;
+            if (unlockText) unlockText.innerHTML = type === 1 ? `🔓 Plano liberado com sucesso!` : `🔓 Oferta liberada!`;
             if (hiddenBtn) {
                 hiddenBtn.style.display = 'block';
                 hiddenBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
-    }, 920); 
+    }, 1000); // Conta de 1 em 1 segundo REAL
 }
 
 function startLoading2() {
