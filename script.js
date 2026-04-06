@@ -453,7 +453,7 @@ function startVslProgress2() {
         hiddenBtn.classList.remove('active');
     }
     
-    // 86 segundos total (860ms * 100)
+    // 92 segundos total (920ms * 100)
     const interval = setInterval(() => {
         progress++;
         if (fill) fill.style.width = `${progress}%`;
@@ -468,7 +468,7 @@ function startVslProgress2() {
                 hiddenBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
-    }, 860); 
+    }, 920); 
 }
 
 function startLoading2() {
