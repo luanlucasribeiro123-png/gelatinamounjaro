@@ -161,7 +161,7 @@ function nextScreen(screenId, isBack = false) {
     }
     if (screenId === 'screen-vsl-2') {
         loadVturb2();
-        startVSLTimer(92, 'vsl2-progress-fill', 'vsl2-progress-pct', 'vsl2-progress-text', 'vsl2-hidden-button', 2);
+        startVSLTimer(87, 'vsl2-progress-fill', 'vsl2-progress-pct', 'vsl2-progress-text', 'vsl2-hidden-button', 2);
     }
     if (screenId === 'screen-loading-vsl3') {
         startLoading3();
